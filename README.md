@@ -11,4 +11,4 @@ The `runCMS` repository contains all files and scripts used to run covariates fo
 
 ## Main code
 
-the main scripts/code used to carry out this project can be found in the *Main code* repository.
+The main scripts/code used to carry out this project can be found in the *Main code* repository.
