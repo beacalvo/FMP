@@ -1,7 +1,7 @@
 # Main code
 
 
-The main code used throughout this project are available is available at this repository. The code can be in three different programming languages: Bash, Python and, mainly, R. The main code is divided in smaller chunks of code.
+The main code used throughout this project are available is available at this folder. The code can be in three different programming languages: Bash, Python and, mainly, R. The main code is divided in smaller chunks of code.
 
 
 ## 1. Code to summarize variant quality control results 
