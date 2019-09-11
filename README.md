@@ -1,6 +1,6 @@
 # FMP
 
-This repository compiles the main code used to obtain the results from the master thesis "Identification of urinary metabQTLs in children".
+This repository compiles the main code used to obtain the results from the master thesis "Identification of urinary metabolite QTLs in children".
 
 
 ## The `runCMS` repository
