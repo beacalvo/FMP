@@ -79,18 +79,7 @@ The CMS scripts required the input data to be in a specific format, as well as t
 
 
 
-### 3.1. Code to prepare genotype data for statistical analysis
-
-
-
-
-
-
-
-
-
-
-#### 3.1. Preparing genotype data for whole-genome analysis
+### 3.1. Preparing genotype data for whole-genome analysis
 
 
 *Script 2* required the genotype data to be recoded from the binary PLINK format to the `.raw` file, in order to use the `.raw` file as input. In this format genotypes are coded as a single allele dosage number (additive coding), which represents the number of minor alleles per person.
@@ -111,7 +100,7 @@ The `phenotypes_file.txt` required as input in *Script 1*  was a text file, with
 ### 3.3. Code to create other input files required to run CMS
 
 
-The runCMS code required the creation of another file as input of *Scripts 1*, *2* and *3*, called `summary_file.csv`. This is a `.csv` file with columns separated by commas and a header line. This file aims at describing the role of each variable contained in the phenotypes file. For each selected variable, a label and a binary indicator for classification as confounding factors (i.e. variables systematically included as covariates), outcome (i.e. each single variable that will be treated as a primary outcome) and candidate covariates (i.e. variables that will be assessed by CMS for inclusion as a covariate) are provided. By default, all variables in "Covariates" column are included as covariates in each outcome analysis. However, the "Excluded" column can be used to exclude specific variables from being considered as covariates for a given outcome. In our study, we excluded the covariates that were hierarchical parent of the outcome under study or vice versa, in order to reduce bias. For example, "X3.aminoisobutyrate.urine" was excluded from being a possible covariate of "X3.hydroxybutyrate.3.aminoisobutyrate.urine" and vice versa, since "X3.hydroxybutyrate.3.aminoisobutyrate.urine" represents the concentrations of both "X3.aminoisobutyrate.urine" and "3.hydroxybutyrate" (i.e. the metabolite "X3.hydroxybutyrate.3.aminoisobutyrate.urine" is a hierarchical parent of "X3.aminoisobutyrate.urine", this is why both metabolites are excluded as possible covariates of the other metabolite).
+The runCMS code required the creation of another file as input of *Scripts 1*, *2* and *3*, called `summary_file.csv`. This is a file in `csv` format with columns separated by commas and a header line. This file aims at describing the role of each variable contained in the phenotypes file. For each selected variable, a label and a binary indicator for classification as confounding factors (i.e. variables systematically included as covariates), outcome (i.e. each single variable that will be treated as a primary outcome) and candidate covariates (i.e. variables that will be assessed by CMS for inclusion as a covariate) are provided. By default, all variables in "Covariates" column are included as covariates in each outcome analysis. However, the "Excluded" column can be used to exclude specific variables from being considered as covariates for a given outcome. In our study, we excluded the covariates that were hierarchical parent of the outcome under study or vice versa, in order to reduce bias. For example, "X3.aminoisobutyrate.urine" was excluded from being a possible covariate of "X3.hydroxybutyrate.3.aminoisobutyrate.urine" and vice versa, since "X3.hydroxybutyrate.3.aminoisobutyrate.urine" represents the concentrations of both "X3.aminoisobutyrate.urine" and "3.hydroxybutyrate" (i.e. the metabolite "X3.hydroxybutyrate.3.aminoisobutyrate.urine" is a hierarchical parent of "X3.aminoisobutyrate.urine", this is why both metabolites are excluded as possible covariates of the other metabolite).
 Moreover, for the urine metabolites that were also measured in serum, the corresponding serum metabolite was added to the "Excluded" column, since there is a strong possibility that they share some genetic source of variability.
 
 (See 3.3.Code_create_input_files_CMS.R)
@@ -125,6 +114,10 @@ First, the input files needed for the analysis were created (See 4.Computing_her
 Next, the GRM was computed by GCTA and GCTA-GREML analysis was carried out (See 4.Computing_heritability_2.sh, 4.Computing_heritability_3.R and 4.Computing_heritability_4.sh).
 
 Finally, SNP-heritability results were summarized. Moreover, results were plotted in two circular plots. One represented variation from additive genetic effects (V(G)), variation from residual effects V(e) and the total phenotypic variation (Vp); while the other one showed the proportion of genotypic to phenotypic variation (V(G)/Vp). In order to create the plots, the R packages from CRAN *tidyverse* (5), *viridis* (6) and *ggplot2* (7) were used (See 4.Computing_heritability_5.R).
+
+
+
+## 5. Running `runCMS`
 
 
 ### 5.1. Modifications made to the CMS scripts
@@ -150,7 +143,7 @@ The resulting scripts and `regions.bed` file after modification were the ones us
 ### 5.2. Computing the effective number of tests (ENT)
 
 
-In order to account for all variants and all metabolites tested, the p-value threshold used to determine significant associations was calculated by dividing the standard genome-wide significance threshold of 5 x 10-8 by the ENT. The ENT is the virtual number of independent tests across the real number of tests performed and it is computed by taking into account the high degree of correlation between metabolites levels. This way, by using the ENT to correct the p-value threshold, overcorrection for multiple testing is prevented (10).
+In order to account for all variants and all metabolites tested, the p-value threshold used to determine significant associations was calculated by dividing the standard genome-wide significance threshold of 5 x 10-^8^ by the ENT. The ENT is the virtual number of independent tests across the real number of tests performed and it is computed by taking into account the high degree of correlation between metabolites levels. This way, by using the ENT to correct the p-value threshold, overcorrection for multiple testing is prevented (10).
 
 The R code used to estimate the ENT by this method is the following (10): see script 5.2.Computing_ENT.R .
 
@@ -169,7 +162,7 @@ Although the cohort variable was statistically significantly associated to metab
 
 
 
-As mentioned in Section 2.6., three different analysis were run. Two of them were one positive control and one negative control, in which only genetic variants located in two different loci (FADS and AGXT2) of the genome were tested. The third, and most relevant analysis, tested the association between the 44 urine metabolite levels and the whole dataset of genotype data. These three analysis were run very similarly: the same phenotypes and summary files were used, only the file containing the genotype data differed.
+The analysis tested the association between the 44 urine metabolite levels and the whole dataset of genotype data.
 
 
 `runCMS` pipeline is composed of 3 main scripts -as stated in Section 2.6.-:
@@ -182,20 +175,10 @@ As mentioned in Section 2.6., three different analysis were run. Two of them wer
 
 
 
-The following code shows how these scripts were called and which arguments were used, in each of the three analysis that were run.
+The following code shows how these scripts were called and which arguments were used:
 
+(See 5.4.Whole_genome_CMS.R)
 
-#### 5.4.1. Positive control (AGXT2 locus)
-
-(See 5.4.1.AGXT2_CMS.R)
-
-#### 5.4.2. Negative control (FADS locus)
-
-(See 5.4.2.FADS_CMS.R)
-
-#### 5.4.3. Whole genome analysis
-
-(See 5.4.3.Whole_genome_CMS.R)
 
 ## 6. Comparison of the identified metabQTLs with urinary metabQTLs in adults
 
