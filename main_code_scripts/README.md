@@ -143,7 +143,7 @@ The resulting scripts and `regions.bed` file after modification were the ones us
 ### 5.2. Computing the effective number of tests (ENT)
 
 
-In order to account for all variants and all metabolites tested, the p-value threshold used to determine significant associations was calculated by dividing the standard genome-wide significance threshold of 5 x 10-^8^ by the ENT. The ENT is the virtual number of independent tests across the real number of tests performed and it is computed by taking into account the high degree of correlation between metabolites levels. This way, by using the ENT to correct the p-value threshold, overcorrection for multiple testing is prevented (10).
+In order to account for all variants and all metabolites tested, the p-value threshold used to determine significant associations was calculated by dividing the standard genome-wide significance threshold of 5 x 10-<sup>8</sup> by the ENT. The ENT is the virtual number of independent tests across the real number of tests performed and it is computed by taking into account the high degree of correlation between metabolites levels. This way, by using the ENT to correct the p-value threshold, overcorrection for multiple testing is prevented (10).
 
 The R code used to estimate the ENT by this method is the following (10): see script 5.2.Computing_ENT.R .
 
