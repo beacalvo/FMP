@@ -1,4 +1,4 @@
-# metabQTLs
+# Urinary metabolite quantitative trait loci in children and their interaction with dietary factors
 
 This repository compiles the main code used to obtain the results from the scientific paper titled "Urinary metabolite quantitative trait loci in children and their interaction with dietary factors".
 
