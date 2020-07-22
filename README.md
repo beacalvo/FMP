@@ -1,6 +1,6 @@
-# FMP
+# metabQTLs
 
-This repository compiles the main code used to obtain the results from the master thesis "Identification of urinary metabolite QTLs in children".
+This repository compiles the main code used to obtain the results from the scientific paper titled "Urinary metabolite quantitative trait loci in children and their interaction with dietary factors".
 
 
 ## The `runCMS` repository
