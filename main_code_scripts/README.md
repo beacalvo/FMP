@@ -1,7 +1,7 @@
 # Main code
 
 
-The main code used throughout this project are available is available at this folder. The code can be in three different programming languages: Bash, Python and, mainly, R. The main code is divided in smaller chunks of code.
+The main code used throughout this project is available at this folder. The code can be in three different programming languages: Bash, Python and, mainly, R. The main code is divided in smaller chunks of code.
 
 
 ## 1. Code to summarize variant quality control results 
@@ -84,33 +84,21 @@ The CMS scripts required the input data to be in a specific format, as well as t
 
 
 
-Three datasets of genotype data were needed since three different statistical analysis were carried out (positive control, negative control and whole-genome analysis).
 
 
 
 
 
 
-#### 3.1.1. Preparing genotype data for whole-genome analysis
+#### 3.1. Preparing genotype data for whole-genome analysis
 
 
 *Script 2* required the genotype data to be recoded from the binary PLINK format to the `.raw` file, in order to use the `.raw` file as input. In this format genotypes are coded as a single allele dosage number (additive coding), which represents the number of minor alleles per person.
 
 *Script 3* requires the `BIM` file as input, in order to include SNP-related information (chromosome, variant identifier, position, base-pair coordinate, allele 1 and allele 2) to the summary tables. In order for the MAF to be included in these tables, the `BIM` file was modified by adding a column containing the MAF for each SNP.
 
-(See scripts 3.1.1.Preparing_genotype_data_1.sh and 3.1.1.Preparing_genotype_data_2.sh)
+(See scripts 3.1.Preparing_genotype_data_1.sh and 3.1.Preparing_genotype_data_2.sh)
 
-#### 3.1.2. Preparing genotype data for positive and negative controls
-
-
-The genotype data located in each of the two regions analysed (FADS and AGXT2 loci) was extracted from the initial dataset. Next, the same files as the ones obtained in the previous section were created.
-
-
-* FADS locus
-
-* AGXT2 locus
-
-(See 3.1.2.Preparing_genotype_data_controls_1.R and 3.1.2.Preparing_genotype_data_controls_2.R)
 
 
 ### 3.2. Code to prepare phenotype data for statistical analysis
